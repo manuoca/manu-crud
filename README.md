@@ -1,2 +1,2 @@
-usuario = admin
+usuario = admin <br>
 contraseña = pass
