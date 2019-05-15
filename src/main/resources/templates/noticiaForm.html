@@ -1,0 +1,53 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Noticias</title>
+  </head>
+  <body class="bg-light">
+   <div class="container border rounded my-5">
+	   <div class="py-5 px-3">  	
+				    		    	
+	    	<form method="POST" th:object="${noticia}"  th:action="@{/noticia}">
+	    	
+	    		<div class="row" th:if="${#fields.hasErrors()}" >
+	    			<div class=col>
+	    				<div class="alert alert-danger" role="alert">
+	    					<h5>Algunos campos no han sido rellenados correctamente:</h5>
+	    					<ul>
+							  <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+							</ul>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		    	
+	    		<h4>Datos de la Noticia</h4>
+		    	<div class="row">
+		    		<div class="col-sm-6">
+			    		<div class="form-group">
+			    			<label for="titulo">Titulo</label>
+			    			<input type="text" class="form-control" th:classappend="${#fields.hasErrors('titulo')} ? is-invalid" id="titulo" th:field="*{titulo}" aria-describedby="tituloHelp" placeholder="Introduce el titulo">
+			    			<small id="tituloHelp" class="form-text text-muted">Titulo de la noticia</small>
+			    		</div>	    		
+		    		</div>
+		    	</div>
+				<input type="hidden" id="id" th:field="*{id}">
+		    	<button class="btn btn-primary" type="submit">Guardar Noticia</button>
+	    	</form>
+	  </div>   
+   </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

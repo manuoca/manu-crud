@@ -1,0 +1,51 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Noticias</title>
+  </head>
+  <body class="bg-light">	
+		<div class="container border rounded my-5 p-3">
+			<div class="row justify-content-md-center">
+				<div class="bg-secondary my-3 px-5  text-white"><h3>GRAN PANTALLA</h3></div>
+			</div>
+			<div class="row justify-content-md-center">
+    			<div class="col-2 text-right px-1">
+	    			<div class="asientos-fila" th:each="i: ${#numbers.sequence(1, 10)}">
+						<label th:text="*{i}"></label>
+					</div> 
+    			</div>
+    			<div class="col-md-auto px-0">
+    			<form>
+		   		    <fieldset>  
+						<div class="d-flex justify-content-center asientos-fila" th:each="i: ${#numbers.sequence(1, 10)}">
+							<label class="bg-primary" th:each="j: ${#numbers.sequence(1, 10)}">
+								<input type="checkbox" th:id="*{i}+'|'+*{j}" th:value="*{i}+'|'+*{j}" onClick='parentElement.classList.toggle("bg-danger")'>
+							</label>
+						</div> 				
+					</fieldset>
+				</form>
+    			</div>
+    			<div class="col-2 px-1">
+    				<div class="asientos-fila" th:each="i: ${#numbers.sequence(1, 10)}">
+						<label th:text="*{i}"></label>
+					</div> 
+    			</div>
+  			</div>
+   		</div>
+
+    <!-- Optional JavaScript -->    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

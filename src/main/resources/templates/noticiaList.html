@@ -1,0 +1,107 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css"
+	integrity="sha384-QokYePQSOwpBDuhlHOsX0ymF6R/vLk/UQVz3WHa6wygxI5oGTmDTv8wahFOSspdm"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.1/css/fontawesome.css"
+	integrity="sha384-vd1e11sR28tEK9YANUtpIOdjGW14pS87bUBuOIoBILVWLFnS+MCX9T6MMf0VdPGq"
+	crossorigin="anonymous">
+
+<title>Noticias</title>
+</head>
+<body class="bg-light">
+	<div class="container border rounded my-5">
+		<div class="py-5 px-3">
+			<div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+			
+			<div class="row">
+				<div class="col-8">
+					<h4>Listado de Noticias</h4>
+				</div>
+
+				<div class="col-4 text-right">
+					<a class="btn btn-primary fas fa-edit" th:href="@{/noticia/new}"
+						role="button"> Nuevo</a>
+				</div>
+			</div>
+
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Titulo</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="noticia : ${noticias}">
+							<th scope="row" th:text="${noticia.id}" />
+							<td th:text="${noticia.titulo}"/>
+							<td><a class="btn btn-primary btn-sm fas fa-edit"
+								th:href="@{'/noticia/edit/' + ${noticia.id}}" role="button"></a>
+								<button class="btn btn-danger btn-sm fas fa-trash" data-toggle="modal" data-target="#confirm-destroy"
+								th:data-href="@{'/noticia/destroy/' + ${noticia.id}}" th:data-titulo="${noticia.titulo}"></button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="confirm-destroy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Confirmar Borrado</h4>
+            </div>
+            <div class="modal-body">
+                <p>Se va a borrar el siguiente elemento:</p>
+                <p class="debug-url"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-danger btn-ok text-white">Borrar</a>
+            </div>
+        </div>
+    </div>
+	</div>
+
+	<!-- Optional JavaScript -->
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script>
+        $('#confirm-destroy').on('show.bs.modal', function(e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            
+            $('.debug-url').html('<strong>' + $(e.relatedTarget).data('titulo') + '</strong>');
+        });
+    </script>
+</body>
+</html>

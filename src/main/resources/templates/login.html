@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Por favor ingresa</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="row justify-content-md-center">
+			<div class="rounded my-3">
+				<div th:if="${param.error}" class="alert alert-danger" role="alert">
+				 	Error al ingresar. Revise su nombre de usuario y contraseña.
+				 </div>
+			</div>
+		</div>
+		<div class="row justify-content-md-center">
+			<div class="border rounded my-1 py-5 px-3">
+				<form method="post" th:action="@{/login}">
+					<h4>Por favor ingresa</h4>					
+					<p>
+						<label for="username" class="sr-only">Usuario</label> <input
+							type="text" id="username" name="username" class="form-control"
+							placeholder="Username" required autofocus>
+					</p>
+					<p>
+						<label for="password" class="sr-only">Contraseña</label> <input
+							type="password" id="password" name="password"
+							class="form-control" placeholder="Password" required>
+					</p>
+					<input name="_csrf" type="hidden"
+						value="89484b58-72d0-40bc-ba02-c31dcaa564fb" />
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
