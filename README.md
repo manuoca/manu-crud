@@ -1,1 +1,2 @@
-"# manu-crud" 
+usuario = admin
+contraseña = pass
